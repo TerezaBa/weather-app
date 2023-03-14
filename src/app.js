@@ -1,4 +1,3 @@
-//date
 function formateDate(today) {
   let days = [
     "Sunday",
@@ -24,11 +23,9 @@ function formateDate(today) {
 
 let date = formateDate(new Date());
 
-let currentDate = document.querySelector("#current-date");
-currentDate.innerHTML = date;
+document.querySelector("#current-date").innerHTML = date;
 
-//searchEngine
-function getTemp(response) {
+function showTemp(response) {
   document.querySelector("h1").innerHTML = response.data.name;
 
   document.querySelector("h2").innerHTML = Math.round(response.data.main.temp);
@@ -43,35 +40,35 @@ function getTemp(response) {
     response.data.wind.speed
   )} m/s`;
 }
-
-function searchArea(event) {
-  event.preventDefault();
-
-  let city = document.querySelector("#search-area");
-  document.querySelector("h1").innerHTML = city.value;
-
+function searchCity(cityName) {
   let apiKey = "1d038ee28ef2727a9f0310860ac10ae9";
   let unit = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=${unit}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}
+&appid=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(getTemp);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+
+  let city = document.querySelector("#search-area").value;
+  searchCity(city);
 }
 
 let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", searchArea);
+searchForm.addEventListener("submit", handleSubmit);
 
-function showLocation(position) {
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
+function handleNavigator(position) {
   let apiKey = "1d038ee28ef2727a9f0310860ac10ae9";
   let unit = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit}`;
-  axios.get(apiUrl).then(getTemp);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=${unit}`;
+  axios.get(apiUrl).then(showTemp);
 }
 
-function showCurrentTemp(event) {
+function handleCurrent(event) {
   event.preventDefault();
-  navigator.geolocation.getCurrentPosition(showLocation);
+  navigator.geolocation.getCurrentPosition(handleNavigator);
 }
 
 let currentButton = document.querySelector("button");
-currentButton.addEventListener("click", showCurrentTemp);
+currentButton.addEventListener("click", handleCurrent);
