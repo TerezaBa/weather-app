@@ -39,7 +39,18 @@ function showTemp(response) {
   document.querySelector("#wind").innerHTML = `${Math.round(
     response.data.wind.speed * 3.6
   )}`;
+
+  document
+    .querySelector("#weather-icon")
+    .setAttribute(
+      "src",
+      `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
+  document
+    .querySelector("#weather-icon")
+    .setAttribute("alt", `${response.data.weather[0].main}`);
 }
+
 function searchCity(cityName) {
   let apiKey = "3fdc8cfbf2d6fa0116c9ae92d3df4f79";
   let unit = "metric";
