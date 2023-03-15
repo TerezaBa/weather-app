@@ -8,10 +8,15 @@ h1 {
   margin: 20px 0 10px 0;
 }
 
-h2 {
+.temp-value {
   font-size: 80px;
   font-weight: 600;
   text-align: center;
+  margin-left: 10px;
+}
+
+.temperature-container {
+  align-items: center;
 }
 
 h3,
@@ -82,8 +87,8 @@ ul {
 
 .temp-unit {
   position: relative;
-  right: -183px;
-  top: -91px;
+  right: -8px;
+  top: -44px;
 }
 .small-link,
 small {
