@@ -1,5 +1,4 @@
 function formateDate(timeStamp) {
-  let date = new Date(timeStamp);
   let days = [
     "Sunday",
     "Monday",
@@ -9,22 +8,19 @@ function formateDate(timeStamp) {
     "Friday",
     "Saturday",
   ];
-  let day = days[date.getDay()];
+  let day = days[timeStamp.getDay()];
 
-  let hour = date.getHours();
+  let hour = timeStamp.getHours();
   let hours = hour.toString().padStart(2, "0");
 
-  let minute = date.getMinutes();
+  let minute = timeStamp.getMinutes();
   let minutes = minute.toString().padStart(2, "0");
 
   return `${day} ${hours}:${minutes}`;
 }
 
 function showTemp(response) {
-  console.log(response.data);
-  document.querySelector("#current-date").innerHTML = formateDate(
-    response.data.dt * 1000
-  );
+  document.querySelector("#current-date").innerHTML = formateDate(new Date());
 
   document.querySelector("#city").innerHTML = response.data.name;
 
