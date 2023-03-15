@@ -34,13 +34,11 @@ function showTemp(response) {
   document.querySelector("#weather-description").innerHTML =
     response.data.weather[0].main;
 
-  document.querySelector(
-    "#hum"
-  ).innerHTML = `Humidity: ${response.data.main.humidity}%`;
+  document.querySelector("#hum").innerHTML = `${response.data.main.humidity}`;
 
-  document.querySelector("#wind").innerHTML = `Wind: ${Math.round(
-    response.data.wind.speed
-  )} m/s`;
+  document.querySelector("#wind").innerHTML = `${Math.round(
+    response.data.wind.speed * 3.6
+  )}`;
 }
 function searchCity(cityName) {
   let apiKey = "3fdc8cfbf2d6fa0116c9ae92d3df4f79";
