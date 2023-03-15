@@ -26,11 +26,14 @@ let date = formateDate(new Date());
 document.querySelector("#current-date").innerHTML = date;
 
 function showTemp(response) {
-  document.querySelector("h1").innerHTML = response.data.name;
+  document.querySelector("#city").innerHTML = response.data.name;
 
-  document.querySelector("h2").innerHTML = Math.round(response.data.main.temp);
+  document.querySelector("#temp-value").innerHTML = Math.round(
+    response.data.main.temp
+  );
 
-  document.querySelector("h4").innerHTML = response.data.weather[0].main;
+  document.querySelector("#weather-description").innerHTML =
+    response.data.weather[0].main;
 
   document.querySelector(
     "#hum"
@@ -70,5 +73,5 @@ function handleCurrent(event) {
   navigator.geolocation.getCurrentPosition(handleNavigator);
 }
 
-let currentButton = document.querySelector("button");
+let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", handleCurrent);
