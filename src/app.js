@@ -21,6 +21,7 @@ function formateDate(timeStamp) {
 }
 
 function showTemp(response) {
+  console.log(response.data);
   document.querySelector("#current-date").innerHTML = formateDate(
     response.data.dt * 1000
   );
@@ -32,13 +33,13 @@ function showTemp(response) {
   );
 
   document.querySelector("#weather-description").innerHTML =
-    response.data.weather[0].main;
+    response.data.weather[0].description;
 
-  document.querySelector("#hum").innerHTML = `${response.data.main.humidity}`;
+  document.querySelector("#hum").innerHTML = `${response.data.main.humidity}%`;
 
   document.querySelector("#wind").innerHTML = `${Math.round(
     response.data.wind.speed * 3.6
-  )}`;
+  )} km/h`;
 
   document
     .querySelector("#weather-icon")
@@ -83,3 +84,5 @@ function handleCurrent(event) {
 
 let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", handleCurrent);
+
+searchCity("Prague");
