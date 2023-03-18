@@ -24,6 +24,8 @@ function showTemp(response) {
 
   document.querySelector("#city").innerHTML = response.data.name;
 
+  celsTemp = response.data.main.temp;
+
   document.querySelector("#temp-value").innerHTML = Math.round(
     response.data.main.temp
   );
@@ -46,6 +48,9 @@ function showTemp(response) {
   document
     .querySelector("#weather-icon")
     .setAttribute("alt", `${response.data.weather[0].main}`);
+
+  fahrLink.classList.remove("active");
+  celsLink.classList.add("active");
 }
 
 function searchCity(cityName) {
@@ -80,5 +85,31 @@ function handleCurrent(event) {
 
 let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", handleCurrent);
+
+function displayFahrTemp(event) {
+  event.preventDefault();
+
+  document.querySelector("#temp-value").innerHTML = Math.round(
+    (celsTemp * 9) / 5 + 32
+  );
+  fahrLink.classList.add("active");
+  celsLink.classList.remove("active");
+}
+
+function displayCelsTemp(event) {
+  event.preventDefault();
+
+  document.querySelector("#temp-value").innerHTML = Math.round(celsTemp);
+  fahrLink.classList.remove("active");
+  celsLink.classList.add("active");
+}
+
+let celsTemp = null;
+
+let fahrLink = document.querySelector("#fahr-link");
+fahrLink.addEventListener("click", displayFahrTemp);
+
+let celsLink = document.querySelector("#cels-link");
+celsLink.addEventListener("click", displayCelsTemp);
 
 searchCity("Prague");
