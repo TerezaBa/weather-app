@@ -49,19 +49,6 @@ ul {
   max-width: 600px;
 }
 
-.search-area {
-  border: 1px solid black;
-  border-radius: 2px;
-  line-height: 2;
-  width: 300px;
-}
-
-.btn-secondary,
-.btn-dark {
-  border-radius: 2px;
-  margin: auto 10px;
-}
-
 .card {
   border-radius: 2px;
 }

@@ -26,19 +26,25 @@
   <body>
     <div class="container">
       <div class="app-container">
-        <form id="search-form">
-          <input
-            type="text"
-            class="search-area"
-            placeholder="Search by area"
-            autofocus="on"
-            id="search-area"
-          />
-          <input type="submit" class="btn btn-secondary" value="Search" />
-          <button type="button" class="btn btn-dark" id="current-button">
-            Current
-          </button>
-        </form>
+        <div class="row">
+          <div class="col-8">
+          <form id="search-form">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search by area"
+              autofocus="on"
+              id="search-area"
+            />
+            </div>
+            <div class="col-2">
+            <input type="submit" class="btn btn-secondary" value="Search" /></div>
+          </form>
+            <div class="col-2">
+            <button type="button" class="btn btn-dark" id="current-button">
+              Current
+            </button></div>
+        </div>
 
         <div class="row">
           <div class="col-6">
