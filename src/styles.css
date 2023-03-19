@@ -62,8 +62,14 @@ a:hover {
   text-align: center;
 }
 
-.card-text {
-  font-size: 18px;
+h5,
+.forecast-temp-min,
+.forecast-temp-max {
+  font-size: 15px;
+}
+
+.forecast-temp-min {
+  opacity: 0.5;
 }
 
 .small-link,
