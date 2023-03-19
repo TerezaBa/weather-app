@@ -54,15 +54,11 @@ a:hover {
   max-width: 600px;
 }
 
-.card {
-  border-radius: 2px;
-}
-
 .card-body {
   text-align: center;
 }
 
-h5,
+.card-title,
 .forecast-temp-min,
 .forecast-temp-max {
   font-size: 15px;
