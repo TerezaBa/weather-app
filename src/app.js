@@ -19,7 +19,7 @@ function formateDate(timeStamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function displayForecast(response) {
   let forecastCard = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
@@ -48,37 +48,36 @@ function displayForecast() {
 }
 
 function showTemp(response) {
+  console.log(response);
   document.querySelector("#current-date").innerHTML = formateDate(new Date());
 
-  document.querySelector("#city").innerHTML = response.data.name;
+  document.querySelector("#city").innerHTML = response.data.city;
 
   document.querySelector("#temp-value").innerHTML = Math.round(
-    response.data.main.temp
+    response.data.temperature.current
   );
 
   document.querySelector("#weather-description").innerHTML =
-    response.data.weather[0].description;
+    response.data.condition.description;
 
-  document.querySelector("#hum").innerHTML = `${response.data.main.humidity}%`;
+  document.querySelector(
+    "#hum"
+  ).innerHTML = `${response.data.temperature.humidity}%`;
 
   document.querySelector("#wind").innerHTML = `${Math.round(
-    response.data.wind.speed * 3.6
+    response.data.wind.speed
   )} km/h`;
 
   document
     .querySelector("#weather-icon")
-    .setAttribute(
-      "src",
-      `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-    );
+    .setAttribute("src", `${response.data.condition.icon_url}`);
   document
     .querySelector("#weather-icon")
-    .setAttribute("alt", `${response.data.weather[0].main}`);
+    .setAttribute("alt", `${response.data.condition.icon}`);
 }
 
 function searchCity(cityName) {
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}
-  &appid=${apiKey}&units=${unit}`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}&key=${apiKey}`;
   axios.get(apiUrl).then(showTemp);
 }
 
@@ -92,7 +91,7 @@ function handleSubmit(event) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 
-let apiKey = "3fdc8cfbf2d6fa0116c9ae92d3df4f79";
+let apiKey = "b36tedd42903o5c6c68a4a10b4b1953f";
 let unit = "metric";
 
 searchCity("Prague");
