@@ -34,14 +34,6 @@ ul {
   font-size: 18px;
 }
 
-a {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
 .app-container {
   border: 1px solid black;
   margin: 10px auto;
@@ -86,13 +78,4 @@ small {
 
 .temperature-container {
   align-items: center;
-}
-
-.active {
-  color: #212529;
-  cursor: default;
-}
-
-.active:hover {
-  text-decoration: none;
 }
