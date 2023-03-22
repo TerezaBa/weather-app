@@ -28,7 +28,6 @@ function formateDay(timeStamp) {
 }
 
 function displayForecast(response) {
-  console.log(response.data.daily);
   let forecast = response.data.daily;
 
   let forecastHTML = `<div class="row">`;
@@ -67,7 +66,7 @@ function getForecast(coordinates) {
   axios.get(apiUrl).then(displayForecast);
 }
 
-function showTemp(response) {
+function displayCurrentTemp(response) {
   document.querySelector("#current-date").innerHTML = formateDate(new Date());
 
   document.querySelector("#city").innerHTML = response.data.city;
@@ -85,7 +84,7 @@ function showTemp(response) {
 
   document.querySelector("#wind").innerHTML = `${Math.round(
     response.data.wind.speed
-  )} km/h`;
+  )} m/s`;
 
   document
     .querySelector("#weather-icon")
@@ -100,7 +99,7 @@ function showTemp(response) {
 
 function searchCity(cityName) {
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}&key=${apiKey}`;
-  axios.get(apiUrl).then(showTemp);
+  axios.get(apiUrl).then(displayCurrentTemp);
 }
 
 function handleSubmit(event) {
